@@ -49,6 +49,8 @@ public class TodoActivity extends AppCompatActivity {
         buttonNext = (Button) findViewById(R.id.buttonNext);
         buttonPrevious = (Button) findViewById(R.id.buttonPrev);
 
+
+
         /* OnClick listener for the  Next button */
         buttonNext.setOnClickListener(
                 new View.OnClickListener(){
@@ -56,7 +58,7 @@ public class TodoActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                  //check index boundary for mTodos
-                if (mTodoIndex < mTodos.length - 1) {
+                if (mTodoIndex  > mTodos.length  + 1) {
                     mTodoIndex += 1;
                 } else {
                     mTodoIndex = 0;
@@ -68,9 +70,26 @@ public class TodoActivity extends AppCompatActivity {
             }
         });
 
-        /** TODO setup previous button object and listener
-        *   to cycle through mTodos */
 
+        /**
+         * previous button click event
+         */
+        buttonPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //check index boundary for mTodos
+                if (mTodoIndex > mTodos.length - 1) {
+                    mTodoIndex += 1;
+                } else {
+                    mTodoIndex = 0;
+                }
+
+
+                //   mTodoIndex += 1;
+                TodoTextView.setText(mTodos[mTodoIndex]);
+            }
+        });
 
 
     }
